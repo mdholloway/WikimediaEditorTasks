@@ -14,6 +14,19 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
 	},
+	"ConfigRegistry": {
+		"WikimediaEditorTasks": "GlobalVarConfig::newInstance"
+	},
+	"config": {
+		"WikimediaEditorTasksDatabase": {
+			"value": false,
+			"description": "Database to use for storing extension data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
+		},
+		"WikimediaEditorTasksEnabledCounters": {
+			"value": [],
+			"description": "Counter classes to enable, with associated configuation."
+		}
+	},
 	"Hooks": {
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates"
 	},
