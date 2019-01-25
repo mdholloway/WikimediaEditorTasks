@@ -29,14 +29,14 @@ class DecrementOnRevertTestCounter extends Counter {
 	/**
 	 * @inheritDoc
 	 */
-	public function onEditSuccess( $centralId ) {
+	public function onEditSuccess( $centralId, $request ) {
 		$this->incrementForLang( $centralId, 'test' );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function onRevert( $centralId ) {
+	public function onRevert( $centralId, $revId ) {
 		$this->decrementForLang( $centralId, 'test' );
 	}
 

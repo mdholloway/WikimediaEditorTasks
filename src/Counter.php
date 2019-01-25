@@ -52,8 +52,9 @@ abstract class Counter {
 	 * Specifies the action to take when a successful edit is made.
 	 * E.g., increment a counter if the edit is an in-app Wikidata description edit.
 	 * @param int $centralId central ID user who edited
+	 * @param Request $request the request object
 	 */
-	abstract public function onEditSuccess( $centralId );
+	abstract public function onEditSuccess( $centralId, $request );
 
 	/**
 	 * Specifies the action to take when a revert is performed.
@@ -62,8 +63,9 @@ abstract class Counter {
 	 * Note: this is called specifically in response to undo and rollback actions, although in
 	 *  principle this class is agnostic with respect to the definition used.
 	 * @param int $centralId central ID of the user who was reverted
+	 * @param int $revId ID of the reverted request
 	 */
-	abstract public function onRevert( $centralId );
+	abstract public function onRevert( $centralId, $revId );
 
 	/**
 	 * Register this counter in the wikimedia_editor_tasks_keys table
@@ -184,6 +186,15 @@ abstract class Counter {
 	public function setTargetPassed( $centralId, $delay = 0 ) {
 		$keyId = $this->getCounterId();
 		return $this->dao->setTargetPassed( $centralId, $keyId, $delay );
+	}
+
+	/**
+	 * Get the tag summary for a revision ID.
+	 * @param int $revId revision ID
+	 * @return string tag summary
+	 */
+	public function getTagSummary( $revId ) {
+		return $this->dao->getTagSummary( $revId );
 	}
 
 	/**

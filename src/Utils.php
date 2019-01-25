@@ -48,6 +48,14 @@ class Utils {
 	}
 
 	/**
+	 * Get the enabled counter definitions from the extension configuration
+	 * @return array enabled counter config
+	 */
+	public static function getEnabledCounterConfig() {
+		return self::getExtensionConfig()->get( 'WikimediaEditorTasksEnabledCounters' );
+	}
+
+	/**
 	 * @return Config the extension configuration
 	 * @throws ConfigException
 	 */
