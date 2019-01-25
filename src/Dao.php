@@ -343,4 +343,22 @@ class Dao {
 		);
 	}
 
+	/**
+	 * Get the tag summary for the specified revision.
+	 * This returns a list of tag names as stored in the DB, therefore
+	 * we can simply search for a substring such as 'app edit' without
+	 * needing to worry about i18n.
+	 * @param int $revId revision ID
+	 * @return string tag summary, provided as a comma-separated list
+	 * 	e.g., "mobile edit,mobile app edit"
+	 */
+	public function getTagSummary( $revId ) {
+		return $this->dbr->selectField(
+			'tag_summary',
+			'ts_tags',
+			[ 'ts_rev_id' => $revId ],
+			__METHOD__
+		);
+	}
+
 }
