@@ -115,9 +115,6 @@ class Dao {
 		);
 		$result = [];
 		foreach ( $wrapper as $row ) {
-			if ( !$result['wet_key'] ) {
-				$result['wet_key'] = [];
-			}
 			$result[$row->wet_key][$row->wetc_lang] = $row->wetc_count;
 		}
 		return $result;
